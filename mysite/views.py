@@ -6,7 +6,7 @@ import json
 from rest_framework.response import Response
 
 @api_view(['GET'])
-def Sales(requst):
+def Sales(requst,address,chain):
     body = {
     "anonymous": False,
     "inputs": [
@@ -36,9 +36,9 @@ def Sales(requst):
 
     api_key = "KcjHvykS40BWeFpXqJHG4glWa3c11soOJSojQaic0nZHPiiZYjadkMC2K1KwtuDD"
     params = {
-        "address": "0x8783832B3568FC52C5689c06f1350a294EDB4cDa", 
+        "address": address, 
         "topic": "ChangeOwnership(uint256,address,address)", 
-        "chain": "mumbai", 
+        "chain": chain, 
         "disable_total": True, 
     }
     # topic = "ChangeOwnership(uint256, address, address)"
