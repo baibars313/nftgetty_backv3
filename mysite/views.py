@@ -215,7 +215,6 @@ def Ranking(request):
 
     ranking = []
     for i in collection:
-
         a = crank(i.get('contract'))
         chainNames = []
         if len(a) > 0:
@@ -244,7 +243,7 @@ def Ranking(request):
             )
 
             item = {"floor_price": a[0], "max_price": a[1], "volume": a[2], "holders": len(
-                result.get('result')), "name": i.get("name"), "avatr": i.get("avatr")}
+                result.get('result')), "name": i.get("name"), "avatr": i.get("avatr"),"chainId":i.get("chainId"),"chainNmae":chainNames[0]}
             ranking.append(item)
     return Response(ranking)
 
