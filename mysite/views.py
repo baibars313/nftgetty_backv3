@@ -184,3 +184,67 @@ def Sales(requst,address,chain):
         body=body,
         )
     return Response(result)
+
+
+@api_view(['GET'])
+def Ranking(request):
+    api_key = "KcjHvykS40BWeFpXqJHG4glWa3c11soOJSojQaic0nZHPiiZYjadkMC2K1KwtuDD"
+
+
+    res = requests.get(
+        "https://tehmasipsen0900.pythonanywhere.com/allItems/?category=all")
+    collectionreq = requests.get(
+        "https://tehmasipsen0900.pythonanywhere.com/all_collections/")
+    collection = collectionreq.json()
+
+    data = res.json()
+
+
+    def crank(add):
+        priceArray = []
+        holdersArray = []
+        for i in data:
+            if i.get("contract_address") == add:
+                price = float(i.get('price'))
+                priceArray.append(price)
+        if len(priceArray) > 0:
+            return [min(priceArray), max(priceArray), sum(priceArray)]
+        else:
+            return []
+
+
+    ranking = []
+    for i in collection:
+
+        a = crank(i.get('contract'))
+        chainNames = []
+        if len(a) > 0:
+            chain = i.get("chainId")
+            if chain == 80001:
+                chaniName = "mumbai"
+                chainNames.append(chaniName)
+            elif chain == 5:
+                chaniName = "goerli"
+                chainNames.append(chaniName)
+            else:
+                chaniName = "bsc testnet"
+                chainNames.append(chaniName)
+
+            params = {
+                "address": i.get("contract"),
+                "chain": chainNames[0],
+                "format": "decimal",
+                "cursor": "",
+                "normalizeMetadata": True,
+            }
+
+            result = evm_api.nft.get_nft_owners(
+                api_key=api_key,
+                params=params,
+            )
+
+            item = {"floor_price": a[0], "max_price": a[1], "volume": a[2], "holders": len(
+                result.get('result')), "name": i.get("name"), "avatr": i.get("avatr")}
+            ranking.append(item)
+    return Response(ranking)
+

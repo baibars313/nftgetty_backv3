@@ -21,4 +21,5 @@ urlpatterns = [
     path("sales/<str:address>/<str:chain>/",Sales,name='sales'),
     path("mints/<str:address>/<str:chain>/",Mints,name='Mint'),
     path("auctions/<str:address>/<str:chain>/",Auctions,name='Mint'),
+    path("ranking/",Ranking,name='ranking'),
 ]
