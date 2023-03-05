@@ -9,3 +9,4 @@ django-cors
 django-cors-headers
 django-rest-framework
 djangorestframework
+requests

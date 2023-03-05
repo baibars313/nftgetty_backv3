@@ -4,7 +4,7 @@ from moralis import evm_api
 from rest_framework.decorators import api_view
 import json
 from rest_framework.response import Response
-
+import requests
 @api_view(['GET'])
 def Mints(request,address,chain):
     body={
