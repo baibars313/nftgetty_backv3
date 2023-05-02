@@ -223,10 +223,10 @@ def Ranking(request):
                 chaniName = "Polygon"
                 chainNames.append(chaniName)
             elif chain == 1:
-                chaniName = "goerli"
+                chaniName = "eth"
                 chainNames.append(chaniName)
             else:
-                chaniName = "BSC chain"
+                chaniName = "bsc"
                 chainNames.append(chaniName)
 
             params = {
