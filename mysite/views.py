@@ -219,14 +219,14 @@ def Ranking(request):
         chainNames = []
         if len(a) > 0:
             chain = i.get("chainId")
-            if chain == 80001:
-                chaniName = "mumbai"
+            if chain == 97:
+                chaniName = "Polygon"
                 chainNames.append(chaniName)
-            elif chain == 5:
+            elif chain == 1:
                 chaniName = "goerli"
                 chainNames.append(chaniName)
             else:
-                chaniName = "bsc testnet"
+                chaniName = "BSC chain"
                 chainNames.append(chaniName)
 
             params = {
