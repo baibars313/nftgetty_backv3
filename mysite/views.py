@@ -219,7 +219,7 @@ def Ranking(request):
         chainNames = []
         if len(a) > 0:
             chain = i.get("chainId")
-            if chain == 97:
+            if chain == 137:
                 chaniName = "Polygon"
                 chainNames.append(chaniName)
             elif chain == 1:
